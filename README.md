@@ -10,4 +10,6 @@ and then formatting it into a tweet using Twitter's API.
 As a next step, I plan to explore Twitter's streaming APIs to allow real-time reactions to tweets and engagement with the community. For example, the bot could be configured to like 
 or retweet any tweet that tags it and uses a specific hashtag.
 
+Using tweepy, Twitter's v2 API.
+
 Follow ChuckleSript https://twitter.com/D4rkisek01

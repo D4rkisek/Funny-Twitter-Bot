@@ -1,21 +1,29 @@
 # Import the necessary library
 import tweepy
+from openai_side import generate_joke
 
 # Create constants for keys and tokens
-CONSUMER_KEY = 'your-consumer-key'
-CONSUMER_SECRET = 'your-consumer-secret'
-ACCESS_TOKEN = 'your-access-token'
-ACCESS_TOKEN_SECRET = 'your-access-token-secret'
+CONSUMER_KEY = 'consumer key'
+CONSUMER_SECRET = 'consumer secret'
+BEARER_TOKEN = r"bearer token"
+ACCESS_TOKEN = 'access token'
+ACCESS_TOKEN_SECRET = 'access token secret'
 
-# Use the keys and tokens to authenticate with the Twitter API
+client = tweepy.Client(bearer_token=BEARER_TOKEN,
+                       consumer_key=CONSUMER_KEY,
+                       consumer_secret=CONSUMER_SECRET,
+                       access_token=ACCESS_TOKEN,
+                       access_token_secret=ACCESS_TOKEN_SECRET)
+
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-# Create a variable api
-api = tweepy.API(auth)
+api = auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 
-def post_tweet(joke):
-    api.update_status(joke)
+def post_tweet(client, joke, hashtags=None):
+    if hashtags:
+        # Each hashtag will be prefixed with the '#' symbol
+        joke += ' ' + ' '.join(['#' + tag for tag in hashtags])
+    client.create_tweet(text=joke)
 
-
+    print("Tweeted Successfully")

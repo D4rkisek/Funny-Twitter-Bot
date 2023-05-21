@@ -1,4 +1,4 @@
-# Funny-Twitter-Bot
+# "Funny"-Twitter-Bot
 
 I am planning to call this bot the "Funny Twitter Bot". The main purpose of this bot would be to disseminate daily, unique, and entertaining programming-related jokes to its followers. 
 I aim to bring a spark of humor and light-heartedness to the coding community on Twitter.

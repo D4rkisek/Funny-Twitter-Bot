@@ -9,6 +9,7 @@ BEARER_TOKEN = r"bearer token"
 ACCESS_TOKEN = 'access token'
 ACCESS_TOKEN_SECRET = 'access token secret'
 
+# Gainaing access and connecting to Twitter API using Credentials
 client = tweepy.Client(bearer_token=BEARER_TOKEN,
                        consumer_key=CONSUMER_KEY,
                        consumer_secret=CONSUMER_SECRET,
@@ -17,12 +18,12 @@ client = tweepy.Client(bearer_token=BEARER_TOKEN,
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 
-api = auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+api = tweepy.API(auth)
 
 
 def post_tweet(client, joke, hashtags=None):
     if hashtags:
-        # Each hashtag will be prefixed with the '#' symbol
+        # Each word in the hashtag list will be prefixed with the '#' symbol
         joke += ' ' + ' '.join(['#' + tag for tag in hashtags])
     client.create_tweet(text=joke)
 
